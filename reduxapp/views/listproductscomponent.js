@@ -9,24 +9,20 @@ const Item = ({product}) => (
     </View>
   );
 
-const ListProductsComponent = ({prds}) => {
-  const [products, setProducts] = useState([]); 
-  //Alert.alert(`The Initial State ${JSON.stringify(prds)}`);
-//   useEffect(()=>{
-//     setProducts(prds);
-//     Alert.alert(`The Received State ${JSON.stringify(prds)}`);
-//   },[]);
- 
+const ListProductsComponent = ({navigation}) => {
+  let products = useSelector(state=>state.listProductReducer);
+ // Alert.alert(`The List ${JSON.stringify(products)}`);
   return (
     <View style={styles.container}>
       <Text>List of Products</Text>
       <FlatList
             numColumns='2'
-            data={prds}
+            data={products}
             renderItem={({item}) => <Item product={item} />}
             keyExtractor={item => item.ProductId}
       />
-      <Button title='Go To Add Products'></Button>  
+      <Button title='Go To Add Products'
+       onPress={()=>navigation.navigate('AddProduct')}></Button>  
     </View>
   )
 }

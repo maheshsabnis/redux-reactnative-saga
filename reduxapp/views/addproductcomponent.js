@@ -5,14 +5,15 @@ import { Alert,Button, Text, View, Image, StyleSheet,TextInput } from 'react-nat
 import {useDispatch} from 'react-redux';
 import { addProduct } from '../actions/actions';  
  
-const AddProductComponent = (props) => {
+const AddProductComponent = ({navigation}) => {
     const [product, setProduct] = useState({ProductId:0,ProductName:''});
     const dispatch = useDispatch();
     const addNewProduct=()=>{
       //Alert.alert(JSON.stringify(`Add = ${JSON.stringify(product)}`));
-       //dispatch((product)=>addProduct(product));
-       props.AddProduct(product);
+      dispatch(addProduct(product));
+      //  props.AddProduct(product);
        setProduct({ProductId:0,ProductName:''});
+       navigation.navigate('ProductList');
     };
 
     return (

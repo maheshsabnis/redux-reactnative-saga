@@ -1,5 +1,5 @@
 import {ADD_PRODUCT, GET_PRODUCTS} from './../actions/actions';
-import {imageSource} from './../../datasource';
+ 
 import {combineReducers} from 'redux';
 
 export function addProductReducer(state,action){
