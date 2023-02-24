@@ -1,28 +1,20 @@
-import {ADD_PRODUCT, GET_PRODUCTS} from './../actions/actions';
- 
-import {combineReducers} from 'redux';
-
-export function addProductReducer(state,action){
-    //alert(`In Add Product Reducer ${JSON.stringify(state)}`);
-    switch(action.type){
-        case ADD_PRODUCT:
-              return {
-                product:action.product
-              };
-        default:
-            return state;        
+const reducers = (state = [], action) => {
+    switch (action.type) {
+      case "GET_PRODUCTS":
+        return { ...state, message: "Get Products call is initiated" };
+      case "GET_PRODUCTS_SUCCESS":
+        return {
+          ...state,
+          products: action.products,
+          message: action.message,
+        };
+      case "ADD_PRODUCT":
+        return { ...state, message: "Add Product is initiated" };
+      case "ADD_PRODUCT_SUCCESS":
+        return { ...state, product:action.product, message: "Add Product is Successful" };
+      default:
+        return state;
     }
-}
-
-export function listProductReducer(state=[],action){
-    //alert(`In List Product Reducer ${JSON.stringify(state)}`);
-    switch(action.type){
-        case ADD_PRODUCT:
-              return  [...state,addProductReducer(undefined,action)];
-        default:
-            return state;        
-    }
-}
-
-const productReducers = combineReducers({listProductReducer});
-export default productReducers;
+  };
+  
+  export default reducers;

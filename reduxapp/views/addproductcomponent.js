@@ -6,13 +6,27 @@ import {useDispatch} from 'react-redux';
 import { addProduct } from '../actions/actions';  
  
 const AddProductComponent = ({navigation}) => {
-    const [product, setProduct] = useState({ProductId:0,ProductName:''});
+    const [product, setProduct] = useState({
+      ProductRowId: 0,
+      ProductId: "",
+      ProductName: "",
+      CategoryName: "",
+      Manufacturer: "",
+      Description: "",
+      BasePrice: 0
+      });
     const dispatch = useDispatch();
     const addNewProduct=()=>{
-      //Alert.alert(JSON.stringify(`Add = ${JSON.stringify(product)}`));
       dispatch(addProduct(product));
-      //  props.AddProduct(product);
-       setProduct({ProductId:0,ProductName:''});
+       setProduct({
+        ProductRowId: 0,
+        ProductId: "",
+        ProductName: "",
+        CategoryName: "",
+        Manufacturer: "",
+        Description: "",
+        BasePrice: 0
+        });
        navigation.navigate('ProductList');
     };
 
@@ -27,6 +41,26 @@ const AddProductComponent = ({navigation}) => {
               value={product.ProductName}
               onChangeText={(text)=>setProduct({...product, ProductName:text})}
               />
+            <Text style={styles.text}>Category Name</Text>
+            <TextInput style={styles.textInput}
+              value={product.CategoryName}
+              onChangeText={(text)=>setProduct({...product, CategoryName:text})}
+              />
+            <Text style={styles.text}>Manufacturer Name</Text>
+            <TextInput style={styles.textInput}
+              value={product.Manufacturer}
+              onChangeText={(text)=>setProduct({...product, Manufacturer:text})}
+              />
+            <Text style={styles.text}>Description</Text>
+            <TextInput style={styles.textInput}
+              value={product.Description}
+              onChangeText={(text)=>setProduct({...product, Description:text})}
+              />
+            <Text style={styles.text}>Base Price</Text>
+            <TextInput style={styles.textInput}
+              value={product.BasePrice}
+              onChangeText={(text)=>setProduct({...product, BasePrice:text})}
+              />  
             <Button
               title='Add Product'
               style={styles.button}
